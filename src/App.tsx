@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const App = () => {
-  return <AppStyled>mizirung</AppStyled>;
+  return <AppStyled>MIZIRUNG</AppStyled>;
 };
 
 export default App;
