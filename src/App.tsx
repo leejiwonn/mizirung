@@ -34,6 +34,7 @@ const App = () => {
     }
 
     if (isPlaying) {
+      audio.muted = false;
       playAudioSafely(audio);
     }
   }, [isPlaying]);
@@ -47,7 +48,14 @@ const App = () => {
 
   return (
     <AppStyled>
-      <PageAudio ref={audioRef} preload="auto" loop src={BackgroundAudio} />
+      <PageAudio
+        ref={audioRef}
+        preload="auto"
+        autoPlay
+        muted
+        loop
+        src={BackgroundAudio}
+      />
       <PageBackground className="sakura" />
       <Page1Styled>
         <GlassMagnifier
