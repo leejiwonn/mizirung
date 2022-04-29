@@ -18,14 +18,6 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const playAudioSafely = async (audio: HTMLAudioElement) => {
-    try {
-      await audio.play();
-    } catch (error) {
-      console.warn(error);
-    }
-  };
-
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -35,7 +27,7 @@ const App = () => {
 
     if (isPlaying) {
       audio.muted = false;
-      playAudioSafely(audio);
+      audio.play();
     }
   }, [isPlaying]);
 
@@ -51,7 +43,6 @@ const App = () => {
       <PageAudio
         ref={audioRef}
         preload="auto"
-        autoPlay
         muted
         loop
         src={BackgroundAudio}
