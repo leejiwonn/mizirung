@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import Modal from 'react-modal';
 
@@ -15,6 +15,28 @@ import './styles/global.css';
 
 const App = () => {
   const [isOpen, setIsOpen] = useState<'yeowon' | 'jiwon' | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const playAudioSafely = async (audio: HTMLAudioElement) => {
+    try {
+      await audio.play();
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (audio == null) {
+      return;
+    }
+
+    if (isPlaying) {
+      playAudioSafely(audio);
+    }
+  }, [isPlaying]);
 
   useLayoutEffect(() => {
     new (window as any).Sakura('.sakura', {
@@ -25,7 +47,7 @@ const App = () => {
 
   return (
     <AppStyled>
-      <PageAudio src={BackgroundAudio} autoPlay loop></PageAudio>
+      <PageAudio ref={audioRef} preload="auto" loop src={BackgroundAudio} />
       <PageBackground className="sakura" />
       <Page1Styled>
         <GlassMagnifier
@@ -36,6 +58,9 @@ const App = () => {
           magnifierBorderSize={3}
           magnifierBorderColor="rgba(255, 255, 255, .5)"
           square={false}
+          onImageLoad={() => {
+            setIsPlaying(true);
+          }}
         />
         <Page1Button
           onClick={() => {
