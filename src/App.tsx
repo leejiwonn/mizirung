@@ -8,7 +8,8 @@ import PaperImage from './assets/paper.png';
 import YeowonImage from './assets/yeowon.png';
 import JiwonImage from './assets/jiwon.png';
 import YeowonLetterImage from './assets/yeowon_letter.png';
-import JiwonLetterImage from './assets/yeowon_letter.png';
+import JiwonLetterImage from './assets/jiwon_letter.jpeg';
+import BackgroundAudioFile from './assets/background_audio.mp3';
 
 import './styles/global.css';
 
@@ -24,6 +25,7 @@ const App = () => {
 
   return (
     <AppStyled>
+      <BackgroundAudio src={BackgroundAudioFile} autoPlay loop />
       <PageBackground className="sakura" />
       <Page1Styled>
         <GlassMagnifier
@@ -35,6 +37,13 @@ const App = () => {
           magnifierBorderColor="rgba(255, 255, 255, .5)"
           square={false}
         />
+        <Page1Button
+          onClick={() => {
+            window.scrollTo({ top: window.screen.height });
+          }}
+        >
+          Scroll Down
+        </Page1Button>
       </Page1Styled>
       <Page2Styled>
         <Page2BackgroundImage src={PaperImage} alt="종이 이미지" />
@@ -82,6 +91,8 @@ const AppStyled = styled.div`
   height: 100%;
 `;
 
+const BackgroundAudio = styled.audio``;
+
 const PageBackground = styled.div`
   width: 100%;
   height: 200vh;
@@ -96,6 +107,20 @@ const PageBackground = styled.div`
 const Page1Styled = styled.div`
   width: 100%;
   height: auto;
+  position: relative;
+`;
+
+const Page1Button = styled.button`
+  position: absolute;
+  top: 90vh;
+  right: 2vw;
+  border-radius: 40%;
+  border: 2px solid #ccc;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 999;
 `;
 
 const Page2Styled = styled.div`
