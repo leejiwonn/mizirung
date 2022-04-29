@@ -1,7 +1,8 @@
 {
   "files": {
     "main.css": "/mizirung/static/css/main.7a02d8c5.css",
-    "main.js": "/mizirung/static/js/main.538c2f31.js",
+    "main.js": "/mizirung/static/js/main.4782ec3e.js",
+    "static/media/background_audio.mp3": "/mizirung/static/media/background_audio.068d4323419af4d8e855.mp3",
     "static/media/mizirung.jpeg": "/mizirung/static/media/mizirung.6ce1ac20c9622502a5c1.jpeg",
     "static/media/yeowon_letter.png": "/mizirung/static/media/yeowon_letter.9fb804b50d8316bd7341.png",
     "static/media/jiwon_letter.jpeg": "/mizirung/static/media/jiwon_letter.2883b515660922fa4fd0.jpeg",
@@ -10,10 +11,10 @@
     "static/media/paper.png": "/mizirung/static/media/paper.658be9c94a874f1210ed.png",
     "index.html": "/mizirung/index.html",
     "main.7a02d8c5.css.map": "/mizirung/static/css/main.7a02d8c5.css.map",
-    "main.538c2f31.js.map": "/mizirung/static/js/main.538c2f31.js.map"
+    "main.4782ec3e.js.map": "/mizirung/static/js/main.4782ec3e.js.map"
   },
   "entrypoints": [
     "static/css/main.7a02d8c5.css",
-    "static/js/main.538c2f31.js"
+    "static/js/main.4782ec3e.js"
   ]
 }
