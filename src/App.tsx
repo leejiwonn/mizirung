@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { useState, useLayoutEffect } from 'react';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import Modal from 'react-modal';
-import ReactPlayer from 'react-player';
 
 import MizirungImage from './assets/mizirung.jpeg';
 import PaperImage from './assets/paper.png';
@@ -10,6 +9,7 @@ import YeowonImage from './assets/yeowon.png';
 import JiwonImage from './assets/jiwon.png';
 import YeowonLetterImage from './assets/yeowon_letter.png';
 import JiwonLetterImage from './assets/jiwon_letter.jpeg';
+import BackgroundAudio from './assets/background_audio.mp3';
 
 import './styles/global.css';
 
@@ -25,13 +25,7 @@ const App = () => {
 
   return (
     <AppStyled>
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=8GNFLlp9DMY"
-        width={0}
-        height={0}
-        playing
-        loop
-      />
+      <PageAudio src={BackgroundAudio} autoPlay loop></PageAudio>
       <PageBackground className="sakura" />
       <Page1Styled>
         <GlassMagnifier
@@ -96,6 +90,8 @@ const AppStyled = styled.div`
   width: 100vw;
   height: 100%;
 `;
+
+const PageAudio = styled.audio``;
 
 const PageBackground = styled.div`
   width: 100%;
