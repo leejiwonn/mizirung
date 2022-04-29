@@ -1,15 +1,20 @@
 import styled from '@emotion/styled';
-import { useLayoutEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { GlassMagnifier } from 'react-image-magnifiers';
+import Modal from 'react-modal';
 
-import MizirungImage from './assets/mizirung.png';
+import MizirungImage from './assets/mizirung.jpeg';
 import PaperImage from './assets/paper.png';
 import YeowonImage from './assets/yeowon.png';
 import JiwonImage from './assets/jiwon.png';
+import YeowonLetterImage from './assets/yeowon_letter.png';
+import JiwonLetterImage from './assets/yeowon_letter.png';
 
 import './styles/global.css';
 
 const App = () => {
+  const [isOpen, setIsOpen] = useState<'yeowon' | 'jiwon' | null>(null);
+
   useLayoutEffect(() => {
     new (window as any).Sakura('.sakura', {
       fallSpeed: 1,
@@ -34,26 +39,38 @@ const App = () => {
       <Page2Styled>
         <Page2BackgroundImage src={PaperImage} alt="종이 이미지" />
         <Page2Title>
-          미지야 안녕 너의 친구 여원, 지원이야. 아주 소소하지만 이렇게나마라도
+          미지야 안녕 ! 너의 친구 여원, 지원이야. 아주 소소하지만 이렇게나마라도
           <br />
           누구보다 소중한 너의 결혼을 축하하려고 해 :) 설렘가득한 새출발을 앞둔
           <br />
           너에게 그동안 우리와 함께했던 시간들을 같이 추억해보면 좋을 것 같아서
-          <br />한 장의 사진으로 만들어봤어. 너무 사랑하고, 결혼 너무 축하해 !
+          <br />한 장의 사진으로 만들어봤어. 사랑하는 우리 미지 결혼 축하해 !
         </Page2Title>
         <Page2Content>
           <Page2LinkButtonStyled>
-            <Page2LinkButton>
+            <Page2LinkButton onClick={() => setIsOpen('yeowon')}>
               <Page2LinkButtonImage src={YeowonImage} alt="예쁜 여원" />
               <Page2LinkButtonText>♥ 여오니 편지보기 ♥</Page2LinkButtonText>
             </Page2LinkButton>
-            <Page2LinkButton>
+            <Page2LinkButton onClick={() => setIsOpen('jiwon')}>
               <Page2LinkButtonImage src={JiwonImage} alt="예쁜 지원" />
               <Page2LinkButtonText>♥ 지오니 편지보기 ♥</Page2LinkButtonText>
             </Page2LinkButton>
           </Page2LinkButtonStyled>
         </Page2Content>
       </Page2Styled>
+      <Modal
+        isOpen={!!isOpen}
+        ariaHideApp={false}
+        onRequestClose={() => setIsOpen(null)}
+        style={modalStyle}
+      >
+        {isOpen === 'yeowon' ? (
+          <LetterImage src={YeowonLetterImage} alt="여원 편지" />
+        ) : (
+          <LetterImage src={JiwonLetterImage} alt="지원 편지" />
+        )}
+      </Modal>
     </AppStyled>
   );
 };
@@ -127,9 +144,38 @@ const Page2LinkButton = styled.button`
 const Page2LinkButtonImage = styled.img`
   width: 80%;
   height: 80%;
+  border: 0px;
 `;
 
 const Page2LinkButtonText = styled.p`
   font-size: 24px;
   margin-top: 8px;
+`;
+
+const modalStyle = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    cursor: 'pointer',
+  },
+  content: {
+    width: '80vw',
+    height: '90vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    postiion: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translateX(-50%) translateY(-50%)',
+    border: 'none',
+    borderRadius: 20,
+    cursor: 'default',
+    padding: 0,
+    margin: 0,
+  },
+};
+
+const LetterImage = styled.img`
+  width: 80%;
+  height: auto;
 `;
